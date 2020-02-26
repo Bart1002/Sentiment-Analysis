@@ -8,7 +8,6 @@
       crossorigin="anonymous"
     />
 
-
     <meta charset="UTF-8" />
     <meta
       name="Sentiment-Analysis"
@@ -16,19 +15,37 @@
     />
     <title>Document</title>
 
+    <style>
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+      }
 
+      #main{
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
+      #lower{
+        position: fixed;
+        top: 60%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
+    </style>
   </head>
   <body>
-    <form method="POST" enctype="text/plain" action="/predict">
-      <input type="text" value="{{original_text if original_text}}">
-      <input type="submit" style="color:black;" value="upload">
+    <form id="main" method="POST"  action="/predict">
+      <input type="text" name="text" value="{{original_text if original_text}}" />
+      <input type="submit" style="color:black;" value="upload" />
     </form>
 
-
-    <div>
-        <h1>
-            {{r if r}}
-        </h1>
+    <div id ="lower">
+      <h1>
+        {{r if r}}
+      </h1>
     </div>
     <script
       src="https://code.jquery.com/jquery-3.4.1.slim.min.js"

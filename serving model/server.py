@@ -51,20 +51,22 @@ def load_model():
     model = _model
 
 
-@app.route("/predict", methods=["POST"])
+@app.route("/predict", methods=["POST","GET"])
 def predict():
 
-    text = request.data
+    text = request.form.get('text')
 
     original_text = text
 
-    text = text.decode("utf-8") 
+    # text = text.decode("utf-8") 
 
     text= [clear_sentence(text)]
     text = tokenize_and_padding(text,TOKENIZER)
 
     result = model.predict(text)
-    r = str(result[0][0])
+    print(result)
+    r = str(int(result[0][0]*100))+"%"
+    print(r)
 
     return render_template('index.html',r=r,original_text=original_text)
 

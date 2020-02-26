@@ -99,11 +99,13 @@ def get_words_embeddings(tokenizer,of_higher_frequency):
 
 print(of_higher_frequency,"------------------------------------------------------------------")
 embedding_matrix = get_words_embeddings(tokenizer,of_higher_frequency)
+
 t = int(time.time())
 np.save(f"requirements to use model/embedding_matrix{t}",embedding_matrix)
-np.save(f"requirements to use model/tokenizer{t}",tokenizer)
 np.save(f"requirements to use model/X{t}",X)
 np.save(f"requirements to use model/Y{t}",Y)
+with open('tokenizer_pickle','wb') as f:
+    pickle.dump(tokenizer,f)
 def create_model():
 
     model = tf.keras.models.Sequential()
